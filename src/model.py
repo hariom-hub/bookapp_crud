@@ -26,7 +26,6 @@ class Book(Base):
     )
 
 
-
     class Users(Base):
         __tablename__ = "Users"
         user_id : Mapped[int] = mapped_column(
