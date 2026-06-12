@@ -47,5 +47,6 @@ class BookService:
         if book_delete is not None:
             await session.delete(book_delete)
             await session.commit()
+            return {}
         else:
             return None
