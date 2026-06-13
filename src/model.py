@@ -1,5 +1,4 @@
 from datetime import date, datetime, UTC
-
 from sqlalchemy.orm import Mapped, mapped_column
 from src.db.base import Base
 from sqlalchemy import String
@@ -26,16 +25,16 @@ class Book(Base):
     )
 
 
-    class Users(Base):
-        __tablename__ = "Users"
-        user_id : Mapped[int] = mapped_column(
-            primary_key=True,
-            autoincrement=True
-        )
-        name : Mapped[str] = mapped_column(String(500))
-        age : Mapped[int]
-        city : Mapped[str] = mapped_column(String(255))
-    
+class Users(Base):
+    __tablename__ = "Users"
+    user_id: Mapped[int] = mapped_column(
+        primary_key=True,
+        autoincrement=True
+    )
+    name: Mapped[str] = mapped_column(String(500))
+    age: Mapped[int]
+    city: Mapped[str] = mapped_column(String(255))
+
 
 def __repr__(self):
     return f"<Book {self.title}>"
