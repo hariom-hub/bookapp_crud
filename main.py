@@ -26,22 +26,22 @@ app = FastAPI(
 
 # global exception handler
 
-@app.exception_handler(startlette_exception)
-async def custom_http_exception_handler(
-        request: Request,
-        exc: startlette_exception
-):
-    if exc.status_code == 404:
-        return JSONResponse(
-            status_code=status.HTTP_404_NOT_FOUND,
-            content={
-                "message": "Oops! This API endpoint does not exist."
-            }
-        )
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={"message": exc.detail}
-    )
+# @app.exception_handler(startlette_exception)
+# async def custom_http_exception_handler(
+#         request: Request,
+#         exc: startlette_exception
+# ):
+#     if exc.status_code == 404:
+#         return JSONResponse(
+#             status_code=status.HTTP_404_NOT_FOUND,
+#             content={
+#                 "message": "Oops! This API endpoint does not exist."
+#             }
+#         )
+#     return JSONResponse(
+#         status_code=exc.status_code,
+#         content={"message": exc.detail}
+#     )
 
 
 app.include_router(book_router, prefix=f"/api/{version}/books")

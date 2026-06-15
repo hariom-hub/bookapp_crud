@@ -37,16 +37,14 @@ async def get_book_byid(book_id: int, session: AsyncSession = Depends(get_sessio
 
 # add new book
 
-@router.post("/", response_model=BookModel, status_code=status.HTTP_201_CREATED)
+@router.post("/addbook", response_model=BookModel, status_code=status.HTTP_201_CREATED)
 async def add_book(book_data: CreateBookModel, session: AsyncSession = Depends(get_session)):
-    new_book = book_data.model_dump()
-    new_book = await book_service.add_book(new_book, session)
-    return new_book
+    return await book_service.add_book(book_data,session)
 
 
 # update book
 
-@router.patch("/{book_id}", response_model=UpdateBookModel, status_code=status.HTTP_200_OK)
+@router.patch("/update/{book_id}", response_model=UpdateBookModel, status_code=status.HTTP_200_OK)
 async def update_book_byid(book_id: int, update_book_data: UpdateBookModel,
                            session: AsyncSession = Depends(get_session)):
     update_book = await book_service.update_book(book_id, update_book_data, session)
