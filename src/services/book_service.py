@@ -1,4 +1,6 @@
+
 from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import status
 from src.db.schemas import BookModel, CreateBookModel, UpdateBookModel
 from sqlalchemy import select, desc
 from src.model import Book
@@ -12,7 +14,7 @@ class BookService:
         result = await session.execute(statement)
         return result.scalars()
 
-    async def get_book_byId(self, book_id: int, session: AsyncSession):
+    async def get_book_ById(self, book_id: int, session: AsyncSession):
         statement = select(Book).where(Book.id == book_id)
         result = await session.execute(statement)
         book = result.scalar_one_or_none()
@@ -43,4 +45,12 @@ class BookService:
             return None
 
     async def delete_book(self, book_id: int, session: AsyncSession):
-        pass
+
+       book_delete = await session.get(Book,book_id)
+       if book_delete is None:
+           raise HTTPException(
+               status_code=status.HTTP_404_NOT_FOUND,
+               detail="Book not found"
+           )
+       await session.delete(book_delete)
+       await session.commit()

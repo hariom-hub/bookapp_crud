@@ -27,7 +27,7 @@ async def get_all_books(session: AsyncSession = Depends(get_session)):
 # get book by book id
 @router.get("/{book_id}", response_model=BookModel, status_code=status.HTTP_200_OK)
 async def get_book_byid(book_id: int, session: AsyncSession = Depends(get_session)):
-    book = await  book_service.get_book_byId(book_id, session)
+    book = await  book_service.get_book_ById(book_id, session)
     if book:
         return book
     else:
@@ -57,5 +57,5 @@ async def update_book_byid(book_id: int, update_book_data: UpdateBookModel,
 
 @router.delete("/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_book_byid(book_id: int, session: AsyncSession = Depends(get_session)):
-    book_delete = await book_service.delete_book(book_id, session)
 
+    await book_service.delete_book(book_id,session)
