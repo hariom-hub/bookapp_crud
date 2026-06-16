@@ -1,12 +1,10 @@
 from fastapi import APIRouter, status, Depends
-from fastapi.responses import JSONResponse
 from fastapi.exceptions import HTTPException
-from typing import Optional, List
+from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.services.book_service import BookService
 from src.db.main import get_session
 from src.db.schemas import BookModel, UpdateBookModel, CreateBookModel
-from src.model import Book
 
 router = APIRouter()
 book_service = BookService()

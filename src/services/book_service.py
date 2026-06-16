@@ -1,9 +1,9 @@
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import status
-from src.db.schemas import BookModel, CreateBookModel, UpdateBookModel
+from src.db.schemas import CreateBookModel, UpdateBookModel
 from sqlalchemy import select, desc
-from src.model import Book
+from model import Book
 from fastapi.exceptions import HTTPException
 
 

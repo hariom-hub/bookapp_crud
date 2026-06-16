@@ -2,7 +2,6 @@
 from sqlalchemy.ext.asyncio import create_async_engine
 from src.config import Config
 from src.db.base import Base
-from src.model import Book
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
 
