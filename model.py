@@ -25,16 +25,4 @@ class Book(Base):
     )
 
 
-class Users(Base):
-    __tablename__ = "Users"
-    user_id: Mapped[int] = mapped_column(
-        primary_key=True,
-        autoincrement=True
-    )
-    name: Mapped[str] = mapped_column(String(500))
-    age: Mapped[int]
-    city: Mapped[str] = mapped_column(String(255))
 
-
-def __repr__(self):
-    return f"<Book {self.title}>"
