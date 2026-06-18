@@ -4,6 +4,7 @@ from src.config import Config
 from src.db.base import Base
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
+from src.auth.model import User
 
 async_engine = create_async_engine(
     Config.MYSQL_DB_URL,

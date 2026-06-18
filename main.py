@@ -8,7 +8,7 @@ from src.routes.routes import router as book_router
 
 
 @asynccontextmanager
-async def life_span(app: FastAPI):
+async def life_span(app:FastAPI):
     print(f"server is starting...")
     await init_db()
     yield
