@@ -27,7 +27,6 @@ async def init_db():
 
 # returning the session that will be used across all the routes
 
-
 async def get_session():
     async with AsynSessionLocal() as session:
         yield session
