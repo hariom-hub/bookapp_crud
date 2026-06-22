@@ -25,6 +25,9 @@ class User(Base):
         default=lambda: datetime.now(UTC),
         onupdate=lambda: datetime.now(UTC)
     )
+    password_hash : Mapped[str] = mapped_column(
+        nullable=False
+    )
     language: Mapped[Language] = mapped_column(
         SQL_ENUM(Language)
     )
