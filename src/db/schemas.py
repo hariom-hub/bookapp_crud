@@ -29,8 +29,6 @@ class UpdateBookModel(BaseModel):
     title: str | None = None
     author: str | None = None
     publisher: str | None = None
-    author: str | None = None
-    publisher: str | None = None
     published_date: date | None = None
     page_count: int | None = None
     language: str | None = None

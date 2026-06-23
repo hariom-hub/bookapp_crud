@@ -9,7 +9,7 @@ user_service = UserService()
 
 auth_router = APIRouter()
 
-@auth_router.post("/signup", response_model = UserModel)
+@auth_router.post("/signup", response_model = UserModel, status_code=status.HTTP_201_CREATED)
 async def user_signup(user_data: UserCreateModel , session:AsyncSession = Depends(get_session)):
     email = user_data.email
     user_exists = user_service.user_exists(email)
