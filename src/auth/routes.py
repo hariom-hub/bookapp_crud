@@ -3,7 +3,7 @@ from src.auth.schemas import UserCreateModel, UserModel
 from src.db.main import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends, HTTPException, status
-from service import UserService
+from src.auth.service import UserService
 
 user_service = UserService()
 
@@ -20,3 +20,4 @@ async def user_signup(user_data: UserCreateModel , session:AsyncSession = Depend
     return new_user
 
 
+# task -> create all remaining endpoints

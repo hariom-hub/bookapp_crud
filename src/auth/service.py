@@ -1,9 +1,9 @@
 from sqlalchemy import select
 from pydantic.v1 import EmailStr
-from schemas import UserCreateModel
+from src.auth.schemas import UserCreateModel, UserModel
 from src.auth.model import User
 from sqlalchemy.ext.asyncio import AsyncSession
-from utils import generate_password_hash, verify_password_hash
+from src.auth.utils import generate_password_hash, verify_password_hash
 
 
 class UserService:
@@ -20,6 +20,8 @@ class UserService:
         result = await session.execute(statement)
         user = result.scalar_one_or_none()
         return user if user is not None else None
+
+    # add update service
 
     async def user_exists(self, email: EmailStr, session: AsyncSession) -> bool:
         user = await self.get_user_by_email(email, session)

@@ -1,9 +1,9 @@
 # receive data from client and then validate it without sending it to the server
 from datetime import date, datetime
 
-from pydantic import BaseModel, EmailStr, Field
-from pydantic.v1 import EmailStr
-from language_type.languages import Language
+from pydantic import BaseModel, Field
+from pydantic import EmailStr
+from src.auth.language_type.languages import Language
 
 
 class UserCreateModel(BaseModel):
@@ -26,5 +26,5 @@ class UserModel(BaseModel):
     created_at: datetime
     is_verified: bool
     updated_at: datetime
-    password_hash: str
+    password_hash: str = Field(exclude=True)
     language: Language
