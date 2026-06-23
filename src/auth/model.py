@@ -1,7 +1,7 @@
 
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import date, datetime, UTC
-from sqlalchemy import String
+from sqlalchemy import String, Boolean
 from sqlalchemy import Enum as SQL_ENUM
 from src.db.base import Base
 from src.auth.language_type.languages import Language
@@ -21,11 +21,15 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(
         default=lambda: datetime.now(UTC),
     )
+    is_verified : Mapped[bool] = mapped_column(
+        Boolean
+    )
     updated_at: Mapped[datetime] = mapped_column(
         default=lambda: datetime.now(UTC),
         onupdate=lambda: datetime.now(UTC)
     )
     password_hash : Mapped[str] = mapped_column(
+        String(255),
         nullable=False
     )
     language: Mapped[Language] = mapped_column(

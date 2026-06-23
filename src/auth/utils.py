@@ -2,7 +2,7 @@ from passlib.context import CryptContext
 from passlib.handlers import bcrypt
 
 password_context = CryptContext(
-    schemes=[bcrypt]
+    schemes = [bcrypt]
 )
 
 def generate_password_hash(password:str)->str:
