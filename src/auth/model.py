@@ -14,8 +14,10 @@ class User(Base):
         unique=True,
     )
     username: Mapped[str] = mapped_column(String(30))
-    age: Mapped[int]
-    email: Mapped[str] = mapped_column(String(20))
+    age: Mapped[int] = mapped_column(
+        nullable=False
+    )
+    email: Mapped[str] = mapped_column(String(50))
     first_name: Mapped[str] = mapped_column(String(30))
     last_name: Mapped[str] = mapped_column(String(20))
     created_at: Mapped[datetime] = mapped_column(

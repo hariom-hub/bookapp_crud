@@ -7,9 +7,13 @@ from src.auth.language_type.languages import Language
 
 
 class UserCreateModel(BaseModel):
-    user_name : str = Field(min_length=6, max_length=10)
+    username : str = Field(min_length=6, max_length=15)
+    age : int
     email : EmailStr
-    password : str = Field(min_length=8, max_length=8)
+    first_name : str = Field(min_length=1, max_length=10)
+    last_name : str = Field(min_length=1, max_length=10)
+    language : Language
+    password_hash : str = Field(min_length=8, max_length=8)
 
 
 class UserUpdateModel(BaseModel):
@@ -24,7 +28,7 @@ class UserModel(BaseModel):
     first_name:str
     last_name: str
     created_at: datetime
-    is_verified: bool
+    is_verified: bool = Field(default=False)
     updated_at: datetime
     password_hash: str = Field(exclude=True)
     language: Language
