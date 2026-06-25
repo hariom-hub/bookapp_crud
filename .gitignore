@@ -1,2 +1,2 @@
 .env
-./db_url.py
+/db_url.py
