@@ -1,5 +1,6 @@
 # receive data from client and then validate it without sending it to the server
 from datetime import date, datetime
+from email import message
 
 from pydantic import BaseModel, Field
 from pydantic import EmailStr
@@ -17,7 +18,13 @@ class UserCreateModel(BaseModel):
 
 
 class UserUpdateModel(BaseModel):
-    pass
+    username: str
+    age: int
+    email: EmailStr
+    first_name: str
+    last_name: str
+    created_at: datetime
+    language: Language
 
 
 class UserModel(BaseModel):

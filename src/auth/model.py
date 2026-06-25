@@ -21,11 +21,11 @@ class User(Base):
     first_name: Mapped[str] = mapped_column(String(30))
     last_name: Mapped[str] = mapped_column(String(20))
     created_at: Mapped[datetime] = mapped_column(
-        default=lambda: datetime.now(UTC),
+        default=lambda: datetime.now(UTC)
     )
     is_verified : Mapped[bool] = mapped_column(
         Boolean,
-        default=False
+        default=True
     )
     updated_at: Mapped[datetime] = mapped_column(
         default=lambda: datetime.now(UTC),
