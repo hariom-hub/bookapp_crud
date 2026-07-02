@@ -1,6 +1,9 @@
+
+
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from pydantic.v1 import EmailStr
+
 from src.auth.schemas import UserCreateModel, UserModel, UserUpdateModel
 from src.auth.model import User
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -21,7 +24,10 @@ class UserService:
         user = result.scalar_one_or_none()
         return user if user is not None else None
 
-    # add update service
+    async def get_all_users(self,session:AsyncSession):
+        statement = select(User).order_by(User.created_at)
+        users = await session.execute(statement)
+        return users.scalars()
 
     async def user_exists(self, email: EmailStr, session: AsyncSession) -> bool:
         user = await self.get_user_by_email(email, session)
@@ -44,7 +50,6 @@ class UserService:
             user_update_dict = user_update.model_dump()
             for key, value in user_update_dict.items():
                 setattr(user, key, value)
-
             await session.commit()
             return user
         else:
